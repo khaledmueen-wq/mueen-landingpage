@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مُعين - اطلب خدمتك الآن | Mueen App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       TOKENS
+    ============================================ */
+    :root {
+      --navy:       #1A2E6F;
+      --navy-dark:  #0F1D4A;
+      --teal:       #00B4A6;
+      --teal-light: #00D4C4;
+      --yellow:     #F5C200;
+      --white:      #FFFFFF;
+      --off-white:  #F7F8FC;
+      --gray:       #8892A4;
+      --text:       #1A1A2E;
+      --text-light: #5A6272;
+      --radius:     16px;
+      --radius-sm:  8px;
+      --shadow:     0 4px 24px rgba(26,46,111,0.10);
+      --shadow-lg:  0 12px 48px rgba(26,46,111,0.18);
+      --font:       'Cairo', sans-serif;
+    }
+
+    /* ============================================
+       RESET
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--text);
+      direction: rtl;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; }
+
+    /* ============================================
+       LANGUAGE BAR
+    ============================================ */
+    .lang-bar {
+      background: var(--navy-dark);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.30);
+      color: rgba(255,255,255,0.70);
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .lang-btn.active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+    .lang-bar-logo {
+      margin-right: auto;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.5px;
+    }
+    body.ltr .lang-bar-logo { margin-right: 0; margin-left: auto; }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4a8a 100%);
+      min-height: 88vh;
+      padding: 64px 24px 96px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 640px;
+      height: 640px;
+      background: radial-gradient(circle, rgba(0,180,166,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(245,194,0,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Eyebrow */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,180,166,.15);
+      border: 1px solid rgba(0,180,166,.40);
+      color: var(--teal-light);
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--teal);
+      border-radius: 50%;
+      animation: pulse 1.6s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .4; transform: scale(.8); }
+    }
+
+    /* Headline */
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(38px, 8vw, 68px);
+      font-weight: 900;
+      line-height: 1.18;
+      margin-bottom: 18px;
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 .accent { color: var(--teal); display: block; }
+
+    /* Sub */
+    .hero-sub {
+      color: rgba(255,255,255,.72);
+      font-size: clamp(15px, 3vw, 18px);
+      font-weight: 400;
+      max-width: 520px;
+      line-height: 1.85;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Price pill */
+    .price-tag {
+      background: var(--yellow);
+      color: var(--navy-dark);
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      padding: 8px 22px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .price-tag small { font-size: 12px; font-weight: 600; }
+
+    /* CTA buttons */
+    .cta-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 52px;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-store {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      border: none;
+      min-width: 185px;
+      text-decoration: none;
+    }
+    .btn-store:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .btn-store.apple  { background: #fff; color: var(--navy-dark); }
+    .btn-store.google { background: var(--teal); color: #fff; }
+    .btn-store svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .btn-store .store-label { display: flex; flex-direction: column; text-align: right; }
+    body.ltr .btn-store .store-label { text-align: left; }
+    .store-small { font-size: 11px; font-weight: 500; opacity: .7; line-height: 1; }
+    .store-name  { font-size: 15px; font-weight: 800; line-height: 1.4; }
+
+    /* Service badges */
+    .hero-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .badge {
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,255,255,.88);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ============================================
+       SHARED SECTION STYLES
+    ============================================ */
+    .section     { padding: 76px 24px; }
+    .section-alt { background: var(--off-white); }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .section-eyebrow {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-head h2 {
+      font-size: clamp(24px, 5vw, 38px);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .section-head p {
+      color: var(--text-light);
+      font-size: 16px;
+      margin-top: 12px;
+      line-height: 1.75;
+    }
+
+    /* ============================================
+       SERVICES GRID
+    ============================================ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26,46,111,.06);
+      transition: transform .22s, box-shadow .22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--navy));
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, rgba(0,180,166,.12), rgba(26,46,111,.08));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+    .service-card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .service-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .service-price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      background: var(--off-white);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 15px;
+    }
+    .service-price span { font-size: 11px; color: var(--gray); font-weight: 500; }
+
+    /* ============================================
+       HOW IT WORKS — STEPS
+    ============================================ */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+    }
+    /* Connecting line */
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      right: calc(16.6% + 32px);
+      left: calc(16.6% + 32px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--navy));
+      opacity: .25;
+    }
+    .step { text-align: center; }
+    .step-num {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(26,46,111,.25);
+      position: relative;
+      z-index: 1;
+    }
+    .step h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .step p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       TRUST NUMBERS
+    ============================================ */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 22px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .trust-item {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26,46,111,.06);
+    }
+    .trust-number {
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .trust-label {
+      font-size: 14px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* ============================================
+       FINAL CTA
+    ============================================ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      padding: 88px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(0,180,166,.20) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(245,194,0,.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      color: #fff;
+      font-size: clamp(26px, 5vw, 44px);
+      font-weight: 900;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,.65);
+      font-size: 17px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section .cta-group { position: relative; z-index: 1; }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: var(--navy-dark);
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 24px;
+      text-align: center;
+      color: rgba(255,255,255,.35);
+      font-size: 13px;
+    }
+
+    /* ============================================
+       STICKY MOBILE CTA
+    ============================================ */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--navy-dark);
+      padding: 12px 16px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.28);
+      z-index: 199;
+      gap: 10px;
+    }
+    .sticky-cta .btn-store {
+      flex: 1;
+      justify-content: center;
+      min-width: auto;
+      padding: 12px 16px;
+    }
+
+    /* ============================================
+       LANGUAGE DISPLAY LOGIC
+    ============================================ */
+    .ar { display: block; }
+    .en { display: none; }
+    body.ltr .ar { display: none; }
+    body.ltr .en { display: block; }
+    span.ar { display: inline; }
+    span.en { display: none; }
+    body.ltr span.ar { display: none; }
+    body.ltr span.en { display: inline; }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 680px) {
+      .hero { padding: 52px 20px 100px; min-height: auto; }
+      .sticky-cta { display: flex; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .steps::before { display: none; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 420px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .cta-group { flex-direction: column; align-items: stretch; }
+      .btn-store { min-width: auto; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== LANGUAGE BAR ======================== -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('ar')" id="btn-ar">العربية</button>
+    <button class="lang-btn"        onclick="setLang('en')" id="btn-en">English</button>
+    <div class="lang-bar-logo">مُعين</div>
+  </div>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span class="ar">خدمات المنزل بين يديك</span>
+      <span class="en">Home Services at Your Fingertips</span>
+    </div>
+
+    <h1>
+      <span class="ar">استرح<br><span class="accent">مُعين معك</span></span>
+      <span class="en">Relax.<br><span class="accent">Mueen Has You.</span></span>
+    </h1>
+
+    <p class="hero-sub">
+      <span class="ar">احجز عاملة تنظيف، جليسة أطفال، طباخة، أو خدمة ضيافة — في دقائق، عبر التطبيق</span>
+      <span class="en">Book a cleaner, babysitter, cook, or hospitality staff — in minutes, through the app</span>
+    </p>
+
+    <div class="price-tag">
+      <small><span class="ar">تبدأ من</span><span class="en">Starting from</span></small>
+      99 <span class="ar">ريال</span><span class="en">SAR</span>
+    </div>
+
+    <div class="cta-group">
+      <a href="#" class="btn-store apple">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        <div class="store-label">
+          <span class="store-small"><span class="ar">حمّل على</span><span class="en">Download on the</span></span>
+          <span class="store-name">App Store</span>
+        </div>
+      </a>
+      <a href="#" class="btn-store google">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3.18 23.76c.34.19.72.24 1.09.15L14.38 12 4.27.09A1.27 1.27 0 003.18.24C2.5.62 2.5 1 2.5 1.76v20.48c0 .76 0 1.14.68 1.52zM16.5 13.5l2.45 2.45L22 14.09c.86-.48.86-1.26 0-1.74l-3.05-1.86-2.45 2.45V13.5zM5.47 22.8l9.88-9.88L12 9.57 5.47 3.2v19.6z"/>
+        </svg>
+        <div class="store-label">
+          <span class="store-small"><span class="ar">تنزيل من</span><span class="en">Get it on</span></span>
+          <span class="store-name">Google Play</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="hero-badges">
+      <div class="badge">🧹 <span class="ar">تنظيف</span><span class="en">Cleaning</span></div>
+      <div class="badge">👶 <span class="ar">جليسة أطفال</span><span class="en">Babysitter</span></div>
+      <div class="badge">👨‍🍳 <span class="ar">طباخة</span><span class="en">Cook</span></div>
+      <div class="badge">☕ <span class="ar">ضيافة</span><span class="en">Hospitality</span></div>
+    </div>
+  </section>
+
+  <!-- ======================== SERVICES ======================== -->
+  <section class="section section-alt">
+    <div class="section-head">
+      <div class="section-eyebrow">
+        <span class="ar">خدماتنا</span>
+        <span class="en">Our Services</span>
+      </div>
+      <h2>
+        <span class="ar">كل ما تحتاجه لمنزلك</span>
+        <span class="en">Everything Your Home Needs</span>
+      </h2>
+      <p>
+        <span class="ar">اختر الخدمة والباقة واحجز في أقل من دقيقتين</span>
+        <span class="en">Choose your service and package — book in under 2 minutes</span>
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🧹</div>
+        <h3><span class="ar">خدمة التنظيف</span><span class="en">Cleaning</span></h3>
+        <p>
+          <span class="ar">باقات صباحية ومسائية — فلبينية وأفريقية. 4 ساعات يومية أو اشتراك شهري</span>
+          <span class="en">Morning & evening slots — Filipino & African packages. 4-hour sessions or monthly subscription</span>
+        </p>
+        <div class="service-price">
+          99 <span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">👶</div>
+        <h3><span class="ar">جليسة أطفال</span><span class="en">Babysitter</span></h3>
+        <p>
+          <span class="ar">عناية متخصصة بأطفالك وأنت مرتاح البال — 4 ساعات أو حسب الطلب</span>
+          <span class="en">Professional childcare so you can rest easy — 4-hour sessions or on-demand</span>
+        </p>
+        <div class="service-price">
+          147 <span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">👨‍🍳</div>
+        <h3><span class="ar">طباخة</span><span class="en">Cook</span></h3>
+        <p>
+          <span class="ar">وجبات منزلية شهية يومية أو أسبوعية حسب طلبك وذوقك</span>
+          <span class="en">Daily or weekly home-cooked meals tailored to your taste</span>
+        </p>
+        <div class="service-price">
+          <span class="ar">تواصل معنا</span><span class="en">Contact us</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">☕</div>
+        <h3><span class="ar">خدمة الضيافة</span><span class="en">Hospitality</span></h3>
+        <p>
+          <span class="ar">مضيفات محترفات لمجالسك واجتماعاتك — باقة الفلبيين، وقت مرن</span>
+          <span class="en">Professional hostesses for your gatherings — Filipino package, flexible timing</span>
+        </p>
+        <div class="service-price">
+          192 <span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== HOW IT WORKS ======================== -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">
+        <span class="ar">كيف يعمل التطبيق</span>
+        <span class="en">How It Works</span>
+      </div>
+      <h2>
+        <span class="ar">ثلاث خطوات فقط</span>
+        <span class="en">Three Simple Steps</span>
+      </h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">١</div>
+        <h3><span class="ar">حمّل التطبيق</span><span class="en">Download the App</span></h3>
+        <p><span class="ar">متاح مجاناً على App Store وGoogle Play</span><span class="en">Free on App Store & Google Play</span></p>
+      </div>
+      <div class="step">
+        <div class="step-num">٢</div>
+        <h3><span class="ar">اختر خدمتك وباقتك</span><span class="en">Pick Your Service</span></h3>
+        <p><span class="ar">تنظيف، جليسة أطفال، طباخة، أو ضيافة — وحدد الوقت المناسب</span><span class="en">Cleaning, babysitting, cooking, or hospitality — pick the time that suits you</span></p>
+      </div>
+      <div class="step">
+        <div class="step-num">٣</div>
+        <h3><span class="ar">استقبل الفريق</span><span class="en">Welcome the Team</span></h3>
+        <p><span class="ar">يصلك الفريق المختص في الوقت المحدد، جاهزاً للعمل</span><span class="en">Your specialist arrives on time, ready to work</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== TRUST ======================== -->
+  <section class="section section-alt">
+    <div class="section-head">
+      <div class="section-eyebrow">
+        <span class="ar">لماذا مُعين</span>
+        <span class="en">Why Mueen</span>
+      </div>
+      <h2>
+        <span class="ar">ثقة آلاف العملاء في المملكة</span>
+        <span class="en">Trusted by Thousands Across KSA</span>
+      </h2>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-number">+7</div>
+        <div class="trust-label"><span class="ar">فروع في المملكة</span><span class="en">Branches in KSA</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">+30K</div>
+        <div class="trust-label"><span class="ar">عامل متخصص</span><span class="en">Specialist Staff</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">2016</div>
+        <div class="trust-label"><span class="ar">تأسست عام</span><span class="en">Founded in</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">⭐ 4.8</div>
+        <div class="trust-label"><span class="ar">تقييم المستخدمين</span><span class="en">User Rating</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FINAL CTA ======================== -->
+  <section class="cta-section">
+    <h2>
+      <span class="ar">جاهز تريح نفسك؟</span>
+      <span class="en">Ready to Relax?</span>
+    </h2>
+    <p>
+      <span class="ar">حمّل مُعين الآن واحجز أول خدمة لك</span>
+      <span class="en">Download Mueen now and book your first service</span>
+    </p>
+    <div class="cta-group">
+      <a href="#" class="btn-store apple">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        <div class="store-label">
+          <span class="store-small"><span class="ar">حمّل على</span><span class="en">Download on the</span></span>
+          <span class="store-name">App Store</span>
+        </div>
+      </a>
+      <a href="#" class="btn-store google">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3.18 23.76c.34.19.72.24 1.09.15L14.38 12 4.27.09A1.27 1.27 0 003.18.24C2.5.62 2.5 1 2.5 1.76v20.48c0 .76 0 1.14.68 1.52zM16.5 13.5l2.45 2.45L22 14.09c.86-.48.86-1.26 0-1.74l-3.05-1.86-2.45 2.45V13.5zM5.47 22.8l9.88-9.88L12 9.57 5.47 3.2v19.6z"/>
+        </svg>
+        <div class="store-label">
+          <span class="store-small"><span class="ar">تنزيل من</span><span class="en">Get it on</span></span>
+          <span class="store-name">Google Play</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="ar">© 2025 مُعين. جميع الحقوق محفوظة.</span>
+    <span class="en">© 2025 Mueen. All rights reserved.</span>
+  </footer>
+
+  <!-- Sticky Mobile Download Bar -->
+  <div class="sticky-cta">
+    <a href="#" class="btn-store apple">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      </svg>
+      <div class="store-label">
+        <span class="store-small ar">حمّل على</span>
+        <span class="store-small en">Download on</span>
+        <span class="store-name">App Store</span>
+      </div>
+    </a>
+    <a href="#" class="btn-store google">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+        <path d="M3.18 23.76c.34.19.72.24 1.09.15L14.38 12 4.27.09A1.27 1.27 0 003.18.24C2.5.62 2.5 1 2.5 1.76v20.48c0 .76 0 1.14.68 1.52zM16.5 13.5l2.45 2.45L22 14.09c.86-.48.86-1.26 0-1.74l-3.05-1.86-2.45 2.45V13.5zM5.47 22.8l9.88-9.88L12 9.57 5.47 3.2v19.6z"/>
+      </svg>
+      <div class="store-label">
+        <span class="store-small ar">تنزيل من</span>
+        <span class="store-small en">Get it on</span>
+        <span class="store-name">Google Play</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ======================== SCRIPT ======================== -->
+  <script>
+    function setLang(lang) {
+      const body   = document.body;
+      const btnAr  = document.getElementById('btn-ar');
+      const btnEn  = document.getElementById('btn-en');
+      if (lang === 'en') {
+        body.classList.add('ltr');
+        body.setAttribute('dir', 'ltr');
+        body.setAttribute('lang', 'en');
+        btnEn.classList.add('active');
+        btnAr.classList.remove('active');
+      } else {
+        body.classList.remove('ltr');
+        body.setAttribute('dir', 'rtl');
+        body.setAttribute('lang', 'ar');
+        btnAr.classList.add('active');
+        btnEn.classList.remove('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
