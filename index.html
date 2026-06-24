@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مُعين - اطلب خدمتك الآن | Mueen App</title>
+  <meta name="description" content="احجز خدمة تنظيف، جليسة أطفال، عاملة مقيمة، أو طباخة في المملكة — تطبيق مُعين">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* ============================================
-       TOKENS
-    ============================================ */
     :root {
       --navy:       #1A2E6F;
       --navy-dark:  #0F1D4A;
@@ -24,15 +22,11 @@
       --text:       #1A1A2E;
       --text-light: #5A6272;
       --radius:     16px;
-      --radius-sm:  8px;
       --shadow:     0 4px 24px rgba(26,46,111,0.10);
       --shadow-lg:  0 12px 48px rgba(26,46,111,0.18);
       --font:       'Cairo', sans-serif;
     }
 
-    /* ============================================
-       RESET
-    ============================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -43,11 +37,9 @@
       overflow-x: hidden;
     }
     img { max-width: 100%; display: block; }
-    a  { text-decoration: none; }
+    a   { text-decoration: none; }
 
-    /* ============================================
-       LANGUAGE BAR
-    ============================================ */
+    /* ---- LANGUAGE BAR ---- */
     .lang-bar {
       background: var(--navy-dark);
       padding: 10px 24px;
@@ -71,23 +63,16 @@
       cursor: pointer;
       transition: all .2s;
     }
-    .lang-btn.active {
-      background: var(--teal);
-      border-color: var(--teal);
-      color: #fff;
-    }
+    .lang-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
     .lang-bar-logo {
       margin-right: auto;
       color: #fff;
       font-size: 20px;
       font-weight: 900;
-      letter-spacing: -.5px;
     }
     body.ltr .lang-bar-logo { margin-right: 0; margin-left: auto; }
 
-    /* ============================================
-       HERO
-    ============================================ */
+    /* ---- HERO ---- */
     .hero {
       background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4a8a 100%);
       min-height: 88vh;
@@ -103,26 +88,20 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -120px;
-      left: 50%;
+      top: -120px; left: 50%;
       transform: translateX(-50%);
-      width: 640px;
-      height: 640px;
+      width: 640px; height: 640px;
       background: radial-gradient(circle, rgba(0,180,166,.18) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero::after {
       content: '';
       position: absolute;
-      bottom: -60px;
-      right: -60px;
-      width: 320px;
-      height: 320px;
+      bottom: -60px; right: -60px;
+      width: 320px; height: 320px;
       background: radial-gradient(circle, rgba(245,194,0,.08) 0%, transparent 70%);
       pointer-events: none;
     }
-
-    /* Eyebrow */
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -139,8 +118,7 @@
       z-index: 1;
     }
     .dot {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       background: var(--teal);
       border-radius: 50%;
       animation: pulse 1.6s ease-in-out infinite;
@@ -150,8 +128,6 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50%       { opacity: .4; transform: scale(.8); }
     }
-
-    /* Headline */
     .hero h1 {
       color: #fff;
       font-size: clamp(38px, 8vw, 68px);
@@ -163,8 +139,6 @@
       z-index: 1;
     }
     .hero h1 .accent { color: var(--teal); display: block; }
-
-    /* Sub */
     .hero-sub {
       color: rgba(255,255,255,.72);
       font-size: clamp(15px, 3vw, 18px);
@@ -175,8 +149,6 @@
       position: relative;
       z-index: 1;
     }
-
-    /* Price pill */
     .price-tag {
       background: var(--yellow);
       color: var(--navy-dark);
@@ -193,7 +165,7 @@
     }
     .price-tag small { font-size: 12px; font-weight: 600; }
 
-    /* CTA buttons */
+    /* ---- STORE BADGES ---- */
     .cta-group {
       display: flex;
       gap: 14px;
@@ -210,10 +182,11 @@
       overflow: hidden;
     }
     .store-badge:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .store-badge img  { height: 52px; width: auto; display: block; }
+    .store-badge img   { height: 52px; width: auto; display: block; }
+    .sticky-cta .store-badge { flex: 1; display: flex; justify-content: center; }
     .sticky-cta .store-badge img { height: 44px; }
 
-    /* Service badges */
+    /* ---- BADGES ROW ---- */
     .hero-badges {
       display: flex;
       gap: 10px;
@@ -235,16 +208,10 @@
       gap: 6px;
     }
 
-    /* ============================================
-       SHARED SECTION STYLES
-    ============================================ */
+    /* ---- SECTIONS ---- */
     .section     { padding: 76px 24px; }
     .section-alt { background: var(--off-white); }
-
-    .section-head {
-      text-align: center;
-      margin-bottom: 52px;
-    }
+    .section-head { text-align: center; margin-bottom: 52px; }
     .section-eyebrow {
       color: var(--teal);
       font-size: 13px;
@@ -266,14 +233,12 @@
       line-height: 1.75;
     }
 
-    /* ============================================
-       SERVICES GRID
-    ============================================ */
+    /* ---- SERVICES GRID ---- */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 22px;
-      max-width: 980px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     .service-card {
@@ -295,8 +260,7 @@
     }
     .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
     .service-icon {
-      width: 54px;
-      height: 54px;
+      width: 54px; height: 54px;
       background: linear-gradient(135deg, rgba(0,180,166,.12), rgba(26,46,111,.08));
       border-radius: 14px;
       display: flex;
@@ -315,7 +279,7 @@
       font-size: 14px;
       color: var(--text-light);
       line-height: 1.65;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .service-price {
       display: inline-flex;
@@ -329,30 +293,24 @@
       font-size: 15px;
     }
     .service-price span { font-size: 11px; color: var(--gray); font-weight: 500; }
-<div class="service-card">
-  <div class="service-icon">🏠</div>
-  <h3><span class="ar">عاملة مقيمة</span><span class="en">Live-in Domestic</span></h3>
-  <p>
-    <span class="ar">عاملة منزلية مقيمة بدوام كامل — متاحة من جنسيات متعددة حسب طلبك</span>
-    <span class="en">Full-time live-in domestic worker — available in multiple nationalities</span>
-  </p>
-  <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;">
-    <span style="background:#EEF1FA; color:#1A2E6F; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">🇮🇩 إندونيسيا</span>
-    <span style="background:#EEF1FA; color:#1A2E6F; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">🇱🇰 سريلانكا</span>
-    <span style="background:#EEF1FA; color:#1A2E6F; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">🇧🇩 بنغلاديش</span>
-    <span style="background:#EEF1FA; color:#1A2E6F; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">🇰🇪 كينيا</span>
-    <span style="background:#EEF1FA; color:#1A2E6F; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">🇺🇬 أوغندا</span>
-    <span style="background:#EEF1FA; color:#1A2E6F; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">🇪🇹 إثيوبيا</span>
-  </div>
-  <div class="service-price">
-    <span class="ar">تواصل معنا</span><span class="en">Contact us</span>
-  </div>
-</div>
-    
 
-    /* ============================================
-       HOW IT WORKS STEPS
-    ============================================ */
+    /* Nationality pills */
+    .nationality-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .nat-pill {
+      background: #EEF1FA;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ---- STEPS ---- */
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -361,7 +319,6 @@
       margin: 0 auto;
       position: relative;
     }
-    /* Connecting line */
     .steps::before {
       content: '';
       position: absolute;
@@ -374,8 +331,7 @@
     }
     .step { text-align: center; }
     .step-num {
-      width: 64px;
-      height: 64px;
+      width: 64px; height: 64px;
       background: linear-gradient(135deg, var(--navy), var(--teal));
       border-radius: 50%;
       display: flex;
@@ -389,21 +345,10 @@
       position: relative;
       z-index: 1;
     }
-    .step h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-    .step p {
-      font-size: 14px;
-      color: var(--text-light);
-      line-height: 1.65;
-    }
+    .step h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step p   { font-size: 14px; color: var(--text-light); line-height: 1.65; }
 
-    /* ============================================
-       TRUST NUMBERS
-    ============================================ */
+    /* ---- TRUST ---- */
     .trust-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -419,22 +364,10 @@
       box-shadow: var(--shadow);
       border: 1px solid rgba(26,46,111,.06);
     }
-    .trust-number {
-      font-size: 42px;
-      font-weight: 900;
-      color: var(--teal);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .trust-label {
-      font-size: 14px;
-      color: var(--text-light);
-      font-weight: 500;
-    }
+    .trust-number { font-size: 42px; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 8px; }
+    .trust-label  { font-size: 14px; color: var(--text-light); font-weight: 500; }
 
-    /* ============================================
-       FINAL CTA
-    ============================================ */
+    /* ---- FINAL CTA ---- */
     .cta-section {
       background: linear-gradient(135deg, var(--navy-dark), var(--navy));
       padding: 88px 24px;
@@ -463,21 +396,17 @@
       font-size: clamp(26px, 5vw, 44px);
       font-weight: 900;
       margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
     .cta-section p {
       color: rgba(255,255,255,.65);
       font-size: 17px;
       margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
-    .cta-section .cta-group { position: relative; z-index: 1; }
+    .cta-section .cta-group { position: relative; z-index: 1; margin-bottom: 0; }
 
-    /* ============================================
-       FOOTER
-    ============================================ */
+    /* ---- FOOTER ---- */
     footer {
       background: var(--navy-dark);
       border-top: 1px solid rgba(255,255,255,.08);
@@ -487,9 +416,7 @@
       font-size: 13px;
     }
 
-    /* ============================================
-       STICKY MOBILE CTA
-    ============================================ */
+    /* ---- STICKY MOBILE BAR ---- */
     .sticky-cta {
       display: none;
       position: fixed;
@@ -500,15 +427,8 @@
       z-index: 199;
       gap: 10px;
     }
-    .sticky-cta .store-badge {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
 
-    /* ============================================
-       LANGUAGE DISPLAY LOGIC
-    ============================================ */
+    /* ---- LANGUAGE LOGIC ---- */
     .ar { display: block; }
     .en { display: none; }
     body.ltr .ar { display: none; }
@@ -518,37 +438,31 @@
     body.ltr span.ar { display: none; }
     body.ltr span.en { display: inline; }
 
-    /* ============================================
-       RESPONSIVE
-    ============================================ */
+    /* ---- RESPONSIVE ---- */
     @media (max-width: 680px) {
       .hero { padding: 52px 20px 100px; min-height: auto; }
       .sticky-cta { display: flex; }
       .services-grid { grid-template-columns: 1fr 1fr; }
-      .steps {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
+      .steps { grid-template-columns: 1fr; gap: 28px; }
       .steps::before { display: none; }
       .trust-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 420px) {
       .services-grid { grid-template-columns: 1fr; }
-      .cta-group { flex-direction: column; align-items: stretch; }
-      .btn-store { min-width: auto; justify-content: center; }
+      .cta-group { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ======================== LANGUAGE BAR ======================== -->
+  <!-- LANGUAGE BAR -->
   <div class="lang-bar">
     <button class="lang-btn active" onclick="setLang('ar')" id="btn-ar">العربية</button>
     <button class="lang-btn"        onclick="setLang('en')" id="btn-en">English</button>
     <div class="lang-bar-logo">مُعين</div>
   </div>
 
-  <!-- ======================== HERO ======================== -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">
       <span class="dot"></span>
@@ -558,12 +472,12 @@
 
     <h1>
       <span class="ar">استرح<br><span class="accent">مُعين معك</span></span>
-      <span class="en">Relax<br><span class="accent">Mueen Has You</span></span>
+      <span class="en">Relax.<br><span class="accent">Mueen Has You.</span></span>
     </h1>
 
     <p class="hero-sub">
-      <span class="ar">احجز عاملة تنظيف، جليسة أطفال، طباخة، أو خدمة ضيافة في دقائق، عبر التطبيق</span>
-      <span class="en">Book a cleaner, babysitter, cook, or hospitality staff in minutes, through the app</span>
+      <span class="ar">احجز عاملة تنظيف، جليسة أطفال، عاملة مقيمة، أو خدمة ضيافة — في دقائق، عبر التطبيق</span>
+      <span class="en">Book a cleaner, babysitter, live-in domestic, or hospitality staff — in minutes, through the app</span>
     </p>
 
     <div class="price-tag">
@@ -583,12 +497,13 @@
     <div class="hero-badges">
       <div class="badge">🧹 <span class="ar">تنظيف</span><span class="en">Cleaning</span></div>
       <div class="badge">👶 <span class="ar">جليسة أطفال</span><span class="en">Babysitter</span></div>
+      <div class="badge">🏠 <span class="ar">عاملة مقيمة</span><span class="en">Live-in Domestic</span></div>
       <div class="badge">👨‍🍳 <span class="ar">طباخة</span><span class="en">Cook</span></div>
       <div class="badge">☕ <span class="ar">ضيافة</span><span class="en">Hospitality</span></div>
     </div>
   </section>
 
-  <!-- ======================== SERVICES ======================== -->
+  <!-- SERVICES -->
   <section class="section section-alt">
     <div class="section-head">
       <div class="section-eyebrow">
@@ -601,36 +516,60 @@
       </h2>
       <p>
         <span class="ar">اختر الخدمة والباقة واحجز في أقل من دقيقتين</span>
-        <span class="en">Choose your service and package book in under 2 minutes</span>
+        <span class="en">Choose your service and package — book in under 2 minutes</span>
       </p>
     </div>
 
     <div class="services-grid">
 
+      <!-- Cleaning -->
       <div class="service-card">
         <div class="service-icon">🧹</div>
         <h3><span class="ar">خدمة التنظيف</span><span class="en">Cleaning</span></h3>
         <p>
-          <span class="ar">باقات صباحية ومسائية فلبينية وأفريقية. 4 ساعات يومية أو اشتراك شهري</span>
-          <span class="en">Morning & evening slots Filipino & African packages. 4-hour sessions or monthly subscription</span>
+          <span class="ar">باقات صباحية ومسائية — فلبينية وأفريقية. 4 ساعات يومية أو اشتراك شهري</span>
+          <span class="en">Morning & evening slots — Filipino & African packages. 4-hour sessions or monthly subscription</span>
         </p>
         <div class="service-price">
-          99 <span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span>
+          99 <span><span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span></span>
         </div>
       </div>
 
+      <!-- Babysitter -->
       <div class="service-card">
         <div class="service-icon">👶</div>
         <h3><span class="ar">جليسة أطفال</span><span class="en">Babysitter</span></h3>
         <p>
-          <span class="ar">عناية متخصصة بأطفالك وأنت مرتاح البال 4 ساعات أو حسب الطلب</span>
-          <span class="en">Professional childcare so you can rest easy 4-hour sessions or on-demand</span>
+          <span class="ar">عناية متخصصة بأطفالك وأنت مرتاح البال — 4 ساعات أو حسب الطلب</span>
+          <span class="en">Professional childcare so you can rest easy — 4-hour sessions or on-demand</span>
         </p>
         <div class="service-price">
-          147 <span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span>
+          147 <span><span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span></span>
         </div>
       </div>
 
+      <!-- Live-in Domestic -->
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3><span class="ar">عاملة مقيمة</span><span class="en">Live-in Domestic</span></h3>
+        <p>
+          <span class="ar">عاملة منزلية مقيمة بدوام كامل — متاحة من جنسيات متعددة حسب طلبك</span>
+          <span class="en">Full-time live-in domestic worker — available in multiple nationalities</span>
+        </p>
+        <div class="nationality-pills">
+          <span class="nat-pill">🇮🇩 <span class="ar">إندونيسيا</span><span class="en">Indonesia</span></span>
+          <span class="nat-pill">🇱🇰 <span class="ar">سريلانكا</span><span class="en">Sri Lanka</span></span>
+          <span class="nat-pill">🇧🇩 <span class="ar">بنغلاديش</span><span class="en">Bangladesh</span></span>
+          <span class="nat-pill">🇰🇪 <span class="ar">كينيا</span><span class="en">Kenya</span></span>
+          <span class="nat-pill">🇺🇬 <span class="ar">أوغندا</span><span class="en">Uganda</span></span>
+          <span class="nat-pill">🇪🇹 <span class="ar">إثيوبيا</span><span class="en">Ethiopia</span></span>
+        </div>
+        <div class="service-price">
+          <span class="ar">تواصل معنا</span><span class="en">Contact us</span>
+        </div>
+      </div>
+
+      <!-- Cook -->
       <div class="service-card">
         <div class="service-icon">👨‍🍳</div>
         <h3><span class="ar">طباخة</span><span class="en">Cook</span></h3>
@@ -643,22 +582,23 @@
         </div>
       </div>
 
+      <!-- Hospitality -->
       <div class="service-card">
         <div class="service-icon">☕</div>
         <h3><span class="ar">خدمة الضيافة</span><span class="en">Hospitality</span></h3>
         <p>
-          <span class="ar">مضيفات محترفات لمجالسك واجتماعاتك باقة الفلبيين، وقت مرن</span>
-          <span class="en">Professional hostesses for your gatherings Filipino package, flexible timing</span>
+          <span class="ar">مضيفات محترفات لمجالسك واجتماعاتك — باقة الفلبيين، وقت مرن</span>
+          <span class="en">Professional hostesses for your gatherings — Filipino package, flexible timing</span>
         </p>
         <div class="service-price">
-          192 <span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span>
+          192 <span><span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span></span>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ======================== HOW IT WORKS ======================== -->
+  <!-- HOW IT WORKS -->
   <section class="section">
     <div class="section-head">
       <div class="section-eyebrow">
@@ -670,7 +610,6 @@
         <span class="en">Three Simple Steps</span>
       </h2>
     </div>
-
     <div class="steps">
       <div class="step">
         <div class="step-num">١</div>
@@ -680,7 +619,7 @@
       <div class="step">
         <div class="step-num">٢</div>
         <h3><span class="ar">اختر خدمتك وباقتك</span><span class="en">Pick Your Service</span></h3>
-        <p><span class="ar">تنظيف، جليسة أطفال، طباخة، أو ضيافة وحدد الوقت المناسب</span><span class="en">Cleaning, babysitting, cooking, or hospitality pick the time that suits you</span></p>
+        <p><span class="ar">تنظيف، جليسة أطفال، مقيمة، طباخة، أو ضيافة — وحدد الوقت المناسب</span><span class="en">Cleaning, babysitting, live-in, cooking, or hospitality — pick the time that suits you</span></p>
       </div>
       <div class="step">
         <div class="step-num">٣</div>
@@ -690,7 +629,7 @@
     </div>
   </section>
 
-  <!-- ======================== TRUST ======================== -->
+  <!-- TRUST -->
   <section class="section section-alt">
     <div class="section-head">
       <div class="section-eyebrow">
@@ -702,7 +641,6 @@
         <span class="en">Trusted by Thousands Across KSA</span>
       </h2>
     </div>
-
     <div class="trust-grid">
       <div class="trust-item">
         <div class="trust-number">+7</div>
@@ -723,11 +661,11 @@
     </div>
   </section>
 
-  <!-- ======================== FINAL CTA ======================== -->
+  <!-- FINAL CTA -->
   <section class="cta-section">
     <h2>
-      <span class="ar">جاهز تريح نفسك</span>
-      <span class="en">Ready to Relax</span>
+      <span class="ar">جاهز تريح نفسك؟</span>
+      <span class="en">Ready to Relax?</span>
     </h2>
     <p>
       <span class="ar">حمّل مُعين الآن واحجز أول خدمة لك</span>
@@ -743,13 +681,13 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <span class="ar">© 2026 مُعين. جميع الحقوق محفوظة.</span>
     <span class="en">© 2026 Mueen. All rights reserved.</span>
   </footer>
 
-  <!-- Sticky Mobile Download Bar -->
+  <!-- STICKY MOBILE BAR -->
   <div class="sticky-cta">
     <a href="#" class="store-badge">
       <img src="appstore.png" alt="Download on the App Store">
@@ -759,12 +697,11 @@
     </a>
   </div>
 
-  <!-- ======================== SCRIPT ======================== -->
   <script>
     function setLang(lang) {
-      const body   = document.body;
-      const btnAr  = document.getElementById('btn-ar');
-      const btnEn  = document.getElementById('btn-en');
+      const body  = document.body;
+      const btnAr = document.getElementById('btn-ar');
+      const btnEn = document.getElementById('btn-en');
       if (lang === 'en') {
         body.classList.add('ltr');
         body.setAttribute('dir', 'ltr');
