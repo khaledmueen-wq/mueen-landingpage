@@ -203,29 +203,15 @@
       position: relative;
       z-index: 1;
     }
-    .btn-store {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 26px;
-      border-radius: var(--radius);
-      font-family: var(--font);
-      font-weight: 700;
-      font-size: 15px;
-      cursor: pointer;
+    .store-badge {
+      display: inline-block;
       transition: transform .2s, box-shadow .2s;
-      border: none;
-      min-width: 185px;
-      text-decoration: none;
+      border-radius: 10px;
+      overflow: hidden;
     }
-    .btn-store:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .btn-store.apple  { background: #fff; color: var(--navy-dark); }
-    .btn-store.google { background: var(--teal); color: #fff; }
-    .btn-store svg { width: 26px; height: 26px; flex-shrink: 0; }
-    .btn-store .store-label { display: flex; flex-direction: column; text-align: right; }
-    body.ltr .btn-store .store-label { text-align: left; }
-    .store-small { font-size: 11px; font-weight: 500; opacity: .7; line-height: 1; }
-    .store-name  { font-size: 15px; font-weight: 800; line-height: 1.4; }
+    .store-badge:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .store-badge img  { height: 52px; width: auto; display: block; }
+    .sticky-cta .store-badge img { height: 44px; }
 
     /* Service badges */
     .hero-badges {
@@ -494,11 +480,10 @@
       z-index: 199;
       gap: 10px;
     }
-    .sticky-cta .btn-store {
+    .sticky-cta .store-badge {
       flex: 1;
+      display: flex;
       justify-content: center;
-      min-width: auto;
-      padding: 12px 16px;
     }
 
     /* ============================================
@@ -553,12 +538,12 @@
 
     <h1>
       <span class="ar">استرح<br><span class="accent">مُعين معك</span></span>
-      <span class="en">Relax<br><span class="accent">Mueen Has You</span></span>
+      <span class="en">Relax.<br><span class="accent">Mueen Has You.</span></span>
     </h1>
 
     <p class="hero-sub">
       <span class="ar">احجز عاملة تنظيف، جليسة أطفال، طباخة، أو خدمة ضيافة — في دقائق، عبر التطبيق</span>
-      <span class="en">Book a cleaner, babysitter, cook, or hospitality staff in minutes, through the app</span>
+      <span class="en">Book a cleaner, babysitter, cook, or hospitality staff — in minutes, through the app</span>
     </p>
 
     <div class="price-tag">
@@ -567,23 +552,11 @@
     </div>
 
     <div class="cta-group">
-      <a href="#" class="btn-store apple">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-        </svg>
-        <div class="store-label">
-          <span class="store-small"><span class="ar">حمّل على</span><span class="en">Download on the</span></span>
-          <span class="store-name">App Store</span>
-        </div>
+      <a href="#" class="store-badge">
+        <img src="appstore.png" alt="Download on the App Store">
       </a>
-      <a href="#" class="btn-store google">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3.18 23.76c.34.19.72.24 1.09.15L14.38 12 4.27.09A1.27 1.27 0 003.18.24C2.5.62 2.5 1 2.5 1.76v20.48c0 .76 0 1.14.68 1.52zM16.5 13.5l2.45 2.45L22 14.09c.86-.48.86-1.26 0-1.74l-3.05-1.86-2.45 2.45V13.5zM5.47 22.8l9.88-9.88L12 9.57 5.47 3.2v19.6z"/>
-        </svg>
-        <div class="store-label">
-          <span class="store-small"><span class="ar">تنزيل من</span><span class="en">Get it on</span></span>
-          <span class="store-name">Google Play</span>
-        </div>
+      <a href="#" class="store-badge">
+        <img src="googleplay.png" alt="Get it on Google Play">
       </a>
     </div>
 
@@ -741,23 +714,11 @@
       <span class="en">Download Mueen now and book your first service</span>
     </p>
     <div class="cta-group">
-      <a href="#" class="btn-store apple">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-        </svg>
-        <div class="store-label">
-          <span class="store-small"><span class="ar">حمّل على</span><span class="en">Download on the</span></span>
-          <span class="store-name">App Store</span>
-        </div>
+      <a href="#" class="store-badge">
+        <img src="appstore.png" alt="Download on the App Store">
       </a>
-      <a href="#" class="btn-store google">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3.18 23.76c.34.19.72.24 1.09.15L14.38 12 4.27.09A1.27 1.27 0 003.18.24C2.5.62 2.5 1 2.5 1.76v20.48c0 .76 0 1.14.68 1.52zM16.5 13.5l2.45 2.45L22 14.09c.86-.48.86-1.26 0-1.74l-3.05-1.86-2.45 2.45V13.5zM5.47 22.8l9.88-9.88L12 9.57 5.47 3.2v19.6z"/>
-        </svg>
-        <div class="store-label">
-          <span class="store-small"><span class="ar">تنزيل من</span><span class="en">Get it on</span></span>
-          <span class="store-name">Google Play</span>
-        </div>
+      <a href="#" class="store-badge">
+        <img src="googleplay.png" alt="Get it on Google Play">
       </a>
     </div>
   </section>
@@ -770,25 +731,11 @@
 
   <!-- Sticky Mobile Download Bar -->
   <div class="sticky-cta">
-    <a href="#" class="btn-store apple">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-      </svg>
-      <div class="store-label">
-        <span class="store-small ar">حمّل على</span>
-        <span class="store-small en">Download on</span>
-        <span class="store-name">App Store</span>
-      </div>
+    <a href="#" class="store-badge">
+      <img src="appstore.png" alt="Download on the App Store">
     </a>
-    <a href="#" class="btn-store google">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-        <path d="M3.18 23.76c.34.19.72.24 1.09.15L14.38 12 4.27.09A1.27 1.27 0 003.18.24C2.5.62 2.5 1 2.5 1.76v20.48c0 .76 0 1.14.68 1.52zM16.5 13.5l2.45 2.45L22 14.09c.86-.48.86-1.26 0-1.74l-3.05-1.86-2.45 2.45V13.5zM5.47 22.8l9.88-9.88L12 9.57 5.47 3.2v19.6z"/>
-      </svg>
-      <div class="store-label">
-        <span class="store-small ar">تنزيل من</span>
-        <span class="store-small en">Get it on</span>
-        <span class="store-name">Google Play</span>
-      </div>
+    <a href="#" class="store-badge">
+      <img src="googleplay.png" alt="Get it on Google Play">
     </a>
   </div>
 
