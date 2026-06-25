@@ -41,7 +41,8 @@
 
     /* ---- LANGUAGE BAR ---- */
     .lang-bar {
-      background: var(--navy-dark);
+      background: #ffffff;
+      border-bottom: 1px solid rgba(26,46,111,0.10);
       padding: 10px 24px;
       display: flex;
       justify-content: flex-start;
@@ -53,8 +54,8 @@
     }
     .lang-btn {
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.30);
-      color: rgba(255,255,255,0.70);
+      border: 1px solid rgba(26,46,111,0.25);
+      color: var(--navy);
       padding: 4px 16px;
       border-radius: 20px;
       font-family: var(--font);
@@ -66,7 +67,7 @@
     .lang-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
     .lang-bar-logo {
       margin-right: auto;
-      color: #fff;
+      color: var(--navy);
       font-size: 20px;
       font-weight: 900;
     }
@@ -74,7 +75,7 @@
 
     /* ---- HERO ---- */
     .hero {
-      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4a8a 100%);
+      background: #ffffff;
       min-height: 88vh;
       padding: 64px 24px 96px;
       display: flex;
@@ -91,7 +92,7 @@
       top: -120px; left: 50%;
       transform: translateX(-50%);
       width: 640px; height: 640px;
-      background: radial-gradient(circle, rgba(0,180,166,.18) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,180,166,.06) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero::after {
@@ -99,16 +100,16 @@
       position: absolute;
       bottom: -60px; right: -60px;
       width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(245,194,0,.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(26,46,111,.04) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(0,180,166,.15);
-      border: 1px solid rgba(0,180,166,.40);
-      color: var(--teal-light);
+      background: rgba(0,180,166,.10);
+      border: 1px solid rgba(0,180,166,.35);
+      color: var(--teal);
       padding: 6px 20px;
       border-radius: 30px;
       font-size: 14px;
@@ -129,7 +130,7 @@
       50%       { opacity: .4; transform: scale(.8); }
     }
     .hero h1 {
-      color: #fff;
+      color: var(--navy);
       font-size: clamp(38px, 8vw, 68px);
       font-weight: 900;
       line-height: 1.18;
@@ -140,7 +141,7 @@
     }
     .hero h1 .accent { color: var(--teal); display: block; }
     .hero-sub {
-      color: rgba(255,255,255,.72);
+      color: var(--text-light);
       font-size: clamp(15px, 3vw, 18px);
       font-weight: 400;
       max-width: 520px;
@@ -196,9 +197,9 @@
       z-index: 1;
     }
     .badge {
-      background: rgba(255,255,255,.09);
-      border: 1px solid rgba(255,255,255,.16);
-      color: rgba(255,255,255,.88);
+      background: rgba(26,46,111,.06);
+      border: 1px solid rgba(26,46,111,.12);
+      color: var(--navy);
       padding: 8px 16px;
       border-radius: 30px;
       font-size: 13px;
@@ -293,6 +294,33 @@
       font-size: 15px;
     }
     .service-price span { font-size: 11px; color: var(--gray); font-weight: 500; }
+
+    /* Download app CTA button inside service card */
+    .card-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--off-white);
+      color: var(--navy);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .card-download-btn:hover { background: #e2e8f8; box-shadow: var(--shadow); }
+
+    /* Price sub-label (e.g. ٤ ساعات) */
+    .price-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--teal);
+      font-weight: 700;
+      margin-top: 4px;
+    }
 
     /* Nationality pills */
     .nationality-pills {
@@ -421,9 +449,10 @@
       display: none;
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: var(--navy-dark);
+      background: #ffffff;
+      border-top: 1px solid rgba(26,46,111,.10);
       padding: 12px 16px;
-      box-shadow: 0 -4px 20px rgba(0,0,0,.28);
+      box-shadow: 0 -4px 20px rgba(26,46,111,.12);
       z-index: 199;
       gap: 10px;
     }
@@ -459,7 +488,7 @@
   <div class="lang-bar">
     <button class="lang-btn active" onclick="setLang('ar')" id="btn-ar">العربية</button>
     <button class="lang-btn"        onclick="setLang('en')" id="btn-en">English</button>
-    <div class="lang-bar-logo">مُعين</div>
+    <div class="lang-bar-logo"><img src="mueenlogo.svg" alt="Mueen" style="height:32px; width:auto;"></div>
   </div>
 
   <!-- HERO -->
@@ -486,10 +515,10 @@
     </div>
 
     <div class="cta-group">
-      <a href="#" class="store-badge">
+      <a href="https://apps.apple.com/us/app/mueen-%D9%85-%D8%B9%D9%8A%D9%86/id6477344302" class="store-badge" target="_blank">
         <img src="appstore.png" alt="Download on the App Store">
       </a>
-      <a href="#" class="store-badge">
+      <a href="https://play.google.com/store/apps/details?id=sa.com.mueen.b2c.mueenapp&hl=en" class="store-badge" target="_blank">
         <img src="googleplay.png" alt="Get it on Google Play">
       </a>
     </div>
@@ -531,8 +560,9 @@
           <span class="en">Morning & evening slots   Filipino & African packages. 4-hour sessions or monthly subscription</span>
         </p>
         <div class="service-price">
-          73 <span><span class="ar">ريال / تبدأ من</span><span class="en">SAR / from</span></span>
+          73 <span><span class="ar">ريال / الساعة</span><span class="en">SAR / hr</span></span>
         </div>
+        <span class="price-sub">٤ ساعات</span>
       </div>
 
       <!-- Babysitter -->
@@ -565,7 +595,9 @@
           <span class="nat-pill">🇪🇹 <span class="ar">إثيوبيا</span><span class="en">Ethiopia</span></span>
         </div>
         <div class="service-price">
-          <span class="ar">حمل التطبيق</span><span class="en">Download the app</span>
+          <a href="#" onclick="openStore(event)" class="card-download-btn">
+            <span class="ar">حمل التطبيق</span><span class="en">Download the App</span>
+          </a>
         </div>
       </div>
 
@@ -578,7 +610,9 @@
           <span class="en">Daily or weekly home-cooked meals tailored to your taste</span>
         </p>
         <div class="service-price">
-          <span class="ar">حمل التطبيق</span><span class="en">Download The App</span>
+          <a href="#" onclick="openStore(event)" class="card-download-btn">
+            <span class="ar">حمل التطبيق</span><span class="en">Download the App</span>
+          </a>
         </div>
       </div>
 
@@ -672,10 +706,10 @@
       <span class="en">Download Mueen now and book your first service</span>
     </p>
     <div class="cta-group">
-      <a href="#" class="store-badge">
+      <a href="https://apps.apple.com/us/app/mueen-%D9%85-%D8%B9%D9%8A%D9%86/id6477344302" class="store-badge" target="_blank">
         <img src="appstore.png" alt="Download on the App Store">
       </a>
-      <a href="#" class="store-badge">
+      <a href="https://play.google.com/store/apps/details?id=sa.com.mueen.b2c.mueenapp&hl=en" class="store-badge" target="_blank">
         <img src="googleplay.png" alt="Get it on Google Play">
       </a>
     </div>
@@ -689,15 +723,25 @@
 
   <!-- STICKY MOBILE BAR -->
   <div class="sticky-cta">
-    <a href="#" class="store-badge">
+    <a href="https://apps.apple.com/us/app/mueen-%D9%85-%D8%B9%D9%8A%D9%86/id6477344302" class="store-badge" target="_blank">
       <img src="appstore.png" alt="Download on the App Store">
     </a>
-    <a href="#" class="store-badge">
+    <a href="https://play.google.com/store/apps/details?id=sa.com.mueen.b2c.mueenapp&hl=en" class="store-badge" target="_blank">
       <img src="googleplay.png" alt="Get it on Google Play">
     </a>
   </div>
 
   <script>
+    function openStore(e) {
+      e.preventDefault();
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        window.open('https://apps.apple.com/us/app/mueen-%D9%85-%D8%B9%D9%8A%D9%86/id6477344302', '_blank');
+      } else {
+        window.open('https://play.google.com/store/apps/details?id=sa.com.mueen.b2c.mueenapp&hl=en', '_blank');
+      }
+    }
+
     function setLang(lang) {
       const body  = document.body;
       const btnAr = document.getElementById('btn-ar');
